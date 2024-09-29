@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sum Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Two Sum Example</h1>
+    <div id="output"></div>
+
+    <script>
+        function twoSum(nums, target) {
+            if (!Array.isArray(nums) || nums.length < 2) {
+                throw new Error("Input must be an array with at least two numbers.");
+            }
+            
+            const numMap = {};
+
+            for (let i = 0; i < nums.length; i++) {
+                const complement = target - nums[i];
+
+                if (numMap[complement] !== undefined) {
+                    return [numMap[complement], i];
+                }
+
+                numMap[nums[i]] = i;
+            }
+
+            throw new Error("No two numbers add up to the target.");
+        }
+
+        const nums = [2, 7, 11, 15];
+        const target = 9;
+
+        try {
+            const result = twoSum(nums, target);
+            document.getElementById('output').innerText = `Indices of the two numbers: ${result}`;
+        } catch (error) {
+            console.error(error.message);
+            document.getElementById('output').innerText = error.message;
+        }
+    </script>
+</body>
+</html>
